@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>MANSAG</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center;">Update Member</h1>
+
+    <form action="/update/{{member.id}}" method="POST">
+        <input type="text" name="name" placeholder="Member Name" required value="{{member.name}}">
+        <br>
+        <input type="email" name="email" placeholder="Email" required value="{{member.email}}">
+        <br>
+        <input type="text" name="specialty" placeholder="Specialty" required value="{{member.specialty}}">
+        <br>
+        <input type="number" name="status" placeholder="Status" required value="{{member.status}}">
+        <br>
+        <input type="submit" value="Update Member">
+    </form>
+
+    
+    
+</div>
+{% endblock %}
