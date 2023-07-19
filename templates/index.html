@@ -2,14 +2,19 @@
 
 {% block head %}
 <title>MANSAG</title>
+<style>
+    .expired {
+        background-color: hsla(283, 100%, 50%, 0.759);
+    }
+</style>
 {% endblock %}
 
 {% block body %}
 <div class="content">
     <h1 style="text-align: center;">MANSAG Membership</h1>
     
-
-
+      
+    <h2>Add Member</h2>
     <form action="/" method="POST">
         <input type="text" name="name" placeholder="Member Name" required>
         <br>
@@ -19,8 +24,24 @@
         <br>
         <input type="number" name="status" placeholder="Status" required>
         <br>
+        <label for="date_subscribed">Subscription Date:</label>
+        <input type="date" id="date_subscribed" name="date_subscribed" required>
+        <br>
         <input type="submit" value="Add Member">
     </form>
+    <br>
+    <h2>Search Member</h2>
+    <form action="/" method="GET">
+        <input type="text" name="name" placeholder="Search by Name">
+        <input type="text" name="specialty" placeholder="Search by Specialty">
+        <select name="status">
+          <option value="">Search by Status</option>
+          <option value="0">Inactive</option>
+          <option value="1">Active</option>
+        </select>
+        <button type="submit">Search</button>
+      </form>
+    
     {% if members|length < 1 %}
     <h4 style="text-align: center;">There are no members, start adding one above: </h4>
     {% else %}
@@ -34,17 +55,16 @@
             <th>Actions</th>
         </tr>
         {% for member in members %}
-            <tr>
+            <tr{% if is_subscription_expired(member.date_subscribed) %} class="expired"{% endif %}>
                 <td>{{ member.name }}</td>
-                <td>{{ member.email }}</td>
+                <td><a href="mailto:{{ member.email }}">{{ member.email }}</a></td>
                 <td>{{ member.specialty }}</td>
                 <td>{{ member.status }}</td>
                 <td>{{ member.date_subscribed.strftime('%d-%m-%Y') }}</td>
                 <td>
-                    <!--<a href="/delete/{{member.id}}">Delete</a>-->
                     <a href="#" onclick="confirmDelete('{{ member.id }}')">Delete</a>
                     <br>
-                    <a href="/update/{{member.id}}">Update</a>
+                    <a href="/update/{{ member.id }}">Update</a>
                 </td>
             </tr>
         {% endfor %}

@@ -17,10 +17,14 @@
         <br>
         <input type="number" name="status" placeholder="Status" required value="{{member.status}}">
         <br>
+        <label for="date_subscribed">Subscription Date:</label>
+        <input type="date" name="date_subscribed" placeholder="Subscription Date" required value="{{member.date_subscribed.strftime('%Y-%m-%d')}}">
+        <br>
         <input type="submit" value="Update Member">
     </form>
 
     
     
 </div>
+
 {% endblock %}

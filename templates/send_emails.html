@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>MANSAG - Send Emails</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center;">Send Emails</h1>
+
+    <form action="/send_emails" method="POST">
+        <input type="text" name="subject" placeholder="Email Subject" required>
+        <br>
+        <textarea name="body" rows="5" placeholder="Email Body" required></textarea>
+        <br>
+        <input type="submit" value="Send Emails">
+    </form>
+</div>
+{% endblock %}
