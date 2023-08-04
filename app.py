@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from datetime import datetime,timedelta
 from flask_mail import Mail, Message
 
+
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
