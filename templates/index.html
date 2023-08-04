@@ -4,8 +4,9 @@
 <title>MANSAG</title>
 <style>
     .expired {
-        background-color: hsla(283, 100%, 50%, 0.759);
+        background-color: hsla(0, 90%, 68%, 0.759);
     }
+   
 </style>
 {% endblock %}
 
@@ -56,6 +57,7 @@
         </tr>
         {% for member in members %}
             <tr{% if is_subscription_expired(member.date_subscribed) %} class="expired"{% endif %}>
+
                 <td>{{ member.name }}</td>
                 <td><a href="mailto:{{ member.email }}">{{ member.email }}</a></td>
                 <td>{{ member.specialty }}</td>

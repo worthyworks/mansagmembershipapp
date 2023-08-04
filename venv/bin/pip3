@@ -1,4 +1,4 @@
-#!/Users/nimzingladep/Desktop/mansag_membership_app/venv/bin/python3.9
+#!/Users/nimzingladep/Desktop/mansag_membership_app/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
