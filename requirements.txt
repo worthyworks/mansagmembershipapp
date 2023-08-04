@@ -10,7 +10,7 @@ cssselect==1.2.0
 cssutils==2.7.1
 decorator==5.1.1
 entrypoints==0.4
-Flask==2.3.2
+Flask==2.2.5
 Flask-Login==0.6.2
 Flask-Mail==0.9.1
 Flask-Migrate==4.0.4
