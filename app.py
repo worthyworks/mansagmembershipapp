@@ -22,8 +22,8 @@ migrate = Migrate(app, db)
 app.config['MAIL_SERVER'] = 'smtp.mail.google.com'#'smtp.mail.yahoo.com'
 app.config['MAIL_PORT'] = 587  # or the appropriate port number
 app.config['MAIL_USE_TLS'] = True  # or False if not using TLS
-app.config['MAIL_USERNAME'] = 'info@worthy-works.com'#'nimzing@yahoo.com'
-app.config['MAIL_PASSWORD'] = 'vflvdwlxolxlnbjq'#'Drtwo023>'
+app.config['MAIL_USERNAME'] = 'mansagmembership@gmail.com'
+app.config['MAIL_PASSWORD'] = 'isvuxbwjhamiwizu'
 mail = Mail(app)
 
 app.config['SECRET_KEY'] = 'your_secret_key_here'
@@ -177,7 +177,7 @@ def send_emails():
         try:
             # Replace 'your_yahoo_email' and 'your_yahoo_password' with your actual Yahoo email credentials
             #yag = yagmail.SMTP('your_yahoo_email', 'your_yahoo_password')
-            yag = yagmail.SMTP('info@worthy-works.com', 'vflvdwlxolxlnbjq')
+            yag = yagmail.SMTP('mansagmembership@gmail.com', 'isvuxbwjhamiwizu')
 
             
             with app.app_context():
