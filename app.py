@@ -19,9 +19,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mansag.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-app.config['MAIL_SERVER'] = 'smtp.mail.google.com'#'smtp.mail.yahoo.com'
-app.config['MAIL_PORT'] = 587  # or the appropriate port number
-app.config['MAIL_USE_TLS'] = True  # or False if not using TLS
+app.config['MAIL_SERVER'] = 'smtp.mail.google.com'
+app.config['MAIL_PORT'] = 587  
+app.config['MAIL_USE_TLS'] = True  
 app.config['MAIL_USERNAME'] = 'mansagmembership@gmail.com'
 app.config['MAIL_PASSWORD'] = 'isvuxbwjhamiwizu'
 mail = Mail(app)
@@ -32,8 +32,6 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    # Implement this function to load and return the user from the database based on user_id
-    # For example:
     return User.query.get(int(user_id))
     return None
 
@@ -58,8 +56,6 @@ def login():
         username = form.username.data
         password = form.password.data
 
-        # Implement the login logic here
-        # Check the username and password against the database
         user = User.query.filter_by(username=username, password=password).first()
 
         if user:
@@ -98,7 +94,7 @@ def is_subscription_expired(date_subscribed):
     return expiration_date < current_date
 
 @app.route('/', methods=['POST', 'GET'])
-#@login_required
+@login_required
 def index():
     if request.method == 'POST':
         name = request.form['name']
@@ -118,7 +114,6 @@ def index():
     else:
         query = Membership.query.order_by(Membership.date_subscribed)
         
-        # Search/filter functionality
         search_name = request.args.get('name')
         search_specialty = request.args.get('specialty')
         search_status = request.args.get('status')
@@ -175,8 +170,6 @@ def send_emails():
         recipients_list = [member.email for member in Membership.query.all()]
         
         try:
-            # Replace 'your_yahoo_email' and 'your_yahoo_password' with your actual Yahoo email credentials
-            #yag = yagmail.SMTP('your_yahoo_email', 'your_yahoo_password')
             yag = yagmail.SMTP('mansagmembership@gmail.com', 'isvuxbwjhamiwizu')
 
             
@@ -184,7 +177,7 @@ def send_emails():
                 for recipient in recipients_list:
                     yag.send(to=recipient, subject=subject, contents=body)
             
-            # Close the SMTP connection
+            
             yag.close()
             
             flash('Emails sent successfully', 'success')
@@ -196,4 +189,4 @@ def send_emails():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
